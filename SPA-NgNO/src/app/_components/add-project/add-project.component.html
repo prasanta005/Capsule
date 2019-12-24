@@ -1,0 +1,96 @@
+<div>
+   <form #projectForm="ngForm" (ngSubmit)="submit(projectForm)">
+   <div class="col-md-6">
+      <div class="panel panel-primary">
+         <div class="panel-heading">Add Project</div>
+         <div class="panel-body">
+            <table>
+               <tr>
+                  <td><label for="txtuserFName" class="control-label">Project: &nbsp;&nbsp;&nbsp;</label></td>
+                  <td colspan="4">
+                     <input type="text" class="form-control" id="txtuserFName" name="FirstName" [(ngModel)]="projectData.ProjectName" #userFName="ngModel"
+                     required>
+                  </td>
+               </tr>
+               <br/>
+               <tr>
+                  <td></td>
+                  <td>
+                     <input type="checkbox" name="date" value="1" checked="checked"> Set Start & End date &nbsp;&nbsp;
+                  </td>
+                  <td>
+                     <input required class="form-control" type="date" value="" id="example-date-input" #StartDate="ngModel" name="StartDate" [(ngModel)]="projectData.StartDate">
+                  </td>
+                  <td>
+                     &nbsp;&nbsp;
+                  </td>
+                  <td>
+                     <input required class="form-control" type="date" value="" id="example-date-input" #StartDate="ngModel" name="StartDate" [(ngModel)]="projectData.StartDate">
+                  </td>
+               </tr>
+               <tr>
+                  <td>
+                  </td>
+                  <td colspan="4">0
+                  </td>
+                  <td>
+                     30
+                  </td>
+               </tr>
+               <tr>
+                  <td> <label for="txtlblPriorityName" class="control-label">Priority:{{taskPriority.value}}</label></td>
+                  <td colspan="4">
+                     <input required type="range" class="form-control" id="txtPrioritySlider" name="Priority" min="0" max="50" #taskPriority="ngModel"
+                     [(ngModel)]="task.Priority" required>
+                  </td>
+               </tr>
+               <br/>
+               <tr>
+                  <label for="lblParentTsk" class="control-label">Manager:&nbsp;&nbsp; </label>
+                  <td colspan="3">
+                     <select name="ParentID" id="ddlParentTask" class="form-control" #ddltaskId="ngModel" [(ngModel)]="task.ParentID">
+                     <option [ngValue]="null">select</option>
+                     <option *ngFor="let item of tasks" [value]="item.TaskID" [selected]="task.ParentID" >{{item.TaskName}}</option>
+                     </select>
+                  </td>
+               </tr>
+               <br/>
+               <tr>
+                 <td></td>               
+                  <td> <button class="btn btn-md btn-primary" [disabled]="taskForm.invalid">{{FormRequestType}} Project</button> &nbsp; </td>
+                  <td> <button type="reset" class="btn btn-success">Reset</button></td>
+               </tr>
+            </table>
+         </div>
+      </div>
+   </div>
+   </form>
+   <table class="table table-striped table-hover table-bordered">
+      <thead>
+         <tr>
+            <td><b>Project</b></td>
+            <td><b>No of Tasks</b></td>
+            <td><b>Start Date</b></td>
+              <td><b>End Date</b></td>
+            <td><b>Completed</b></td>
+            <td><b>Priority</b></td>
+            <td colspan="2"><b></b></td>
+         </tr>
+      </thead>
+      <tbody>
+         <tr *ngFor="let userr of users">
+            <td>{{userr.FirstName}}</td>
+            <td>{{userr.LastName}}</td>
+            <td>{{userr.EmployeeID}}</td>
+            <td colspan="2">
+               <button class="btn btn-sm btn-primary" (click)="edit(userr.UserID)">
+               <span class="glyphicon glyphicon-pencil">&nbsp;Edit</span>
+               </button> &nbsp;&nbsp;&nbsp;
+               <button class="btn btn-sm btn-danger" (click)="delete(userr.UserID)">
+               <span class="glyphicon glyphicon-trash">&nbsp;Suspend</span>
+               </button>
+            </td>
+         </tr>
+      </tbody>
+   </table>
+</div>

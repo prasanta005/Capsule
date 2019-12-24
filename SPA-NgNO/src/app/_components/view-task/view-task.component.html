@@ -1,0 +1,59 @@
+
+<table class="table table-striped table-hover table-bordered">
+    <tr>
+      <td>Task:</td>
+      <td colspan="3"><input class="form-control" type="text" name="task" [(ngModel)]="filter" style="box-sizing:border-box;display:block;width:100%;background-color: lightgrey"></td>
+      <td>Parent Task:</td>
+      <td colspan="3"> <input type="text" style="box-sizing:border-box;display:block;width:100%;background-color: lightgrey"   name="parent" ></td>
+    </tr>
+    <tr>
+      <td>Priority From:</td>
+      <td> <input type="text" style="background-color: lightgrey"></td>
+      <td>Priority To:</td>
+      <td> <input type="text"  style="background-color: lightgrey"></td>
+       <td>Start Date:</td>
+      <input class="form-control"  type="date" value="" style="background-color: lightgrey">
+      <td>End Date:</td>
+      <input class="form-control"  type="date" value="" style="background-color: lightgrey">
+    </tr>
+    <tr>
+      <td colspan="8"> <button class="btn btn-sm btn-primary">Clear</button></td>
+    </tr>
+  </table>
+  <hr >
+  <table class="table table-striped table-hover table-bordered">
+     <thead> 
+      <tr>
+         <th (click)="sort('name')">TaskName
+         <span class="glyphicon sort-icon" *ngIf="key =='name'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+          <th (click)="sort('name')">Parent
+         <span class="glyphicon sort-icon" *ngIf="key =='name'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+          <th (click)="sort('name')">Priority
+         <span class="glyphicon sort-icon" *ngIf="key =='name'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+          <th (click)="sort('name')">Start
+         <span class="glyphicon sort-icon" *ngIf="key =='name'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+          <th (click)="sort('name')">End
+         <span class="glyphicon sort-icon" *ngIf="key =='name'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+          <th colspan="2"><b>Actions</b></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let task of tasks | orderBy: key : reverse | filter:filter; let i = index" [attr.data-index]="i">
+        <td  [ngClass]="{'disabled': task.IsCompleted}">{{task.TaskName}}</td>
+        <td  [ngClass]="{'disabled': task.IsCompleted}">{{task.ParentTaskName}}</td>
+        <td [ngClass]="{'disabled': task.IsCompleted}">{{task.Priority}}</td>
+        <td [ngClass]="{'disabled': task.IsCompleted}">{{task.StartDate | date:'dd/MM/yyyy'}}</td>
+        <td [ngClass]="{'disabled': task.IsCompleted}">{{task.EndDate | date:'dd/MM/yyyy'}}</td>
+        <td [ngClass]="{'disabled': task.IsCompleted}">{{task.IsCompleted}}</td>
+        <td [ngClass]="{'disabled': task.IsCompleted}">
+          <button class="btn btn-sm btn-primary" (click)="edit(task.TaskID)" [disabled]="task.IsCompleted">
+          Edit
+          </button> &nbsp;&nbsp;&nbsp;
+          <button class="btn btn-sm btn-danger" (click)="delete(task.TaskID)" [disabled]="task.IsCompleted">
+           End Task
+          </button> &nbsp;&nbsp;&nbsp;
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
