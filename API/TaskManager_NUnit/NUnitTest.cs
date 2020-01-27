@@ -16,7 +16,22 @@ namespace TaskManager_NUnit
             var getResult = allTasks.Get();
             Assert.IsNotNull(getResult);
 
-        }       
-        
+        }
+        [TestMethod]
+        public void GetAllUsers()
+        {
+            UserController allUsers = new UserController();
+            var getResult = allUsers.GetDB_User();
+            Assert.IsNotNull(getResult);
+
+        }
+        [TestMethod]
+        public void GetAllProjects()
+        {
+            ProjectController allProjects = new ProjectController();
+            var getResult = allProjects.GetModel_Project();
+            Assert.IsNotNull(getResult);
+
+        }
     }
 }

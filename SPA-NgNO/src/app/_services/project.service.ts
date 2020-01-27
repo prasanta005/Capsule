@@ -11,7 +11,7 @@ import { ProjectData } from '../_models/project-data.model';
   providedIn: 'root'
 })
 export class ProjectService {
-  private apiUrl: string = 'http://localhost:53475/api/Project';
+  private apiUrl: string = 'http://localhost:53476/api/Project';
 
   constructor(private http: HttpClient) { }
 

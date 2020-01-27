@@ -2,19 +2,19 @@
 <table class="table table-striped table-hover table-bordered">
     <tr>
       <td>Task:</td>
-      <td colspan="3"><input class="form-control" type="text" name="task" [(ngModel)]="filter" style="box-sizing:border-box;display:block;width:100%;background-color: lightgrey"></td>
+      <td colspan="3"><input class="form-control" type="text" name="TaskName" [(ngModel)]="filter" style="box-sizing:border-box;display:block;width:100%;background-color: lightgrey"></td>
       <td>Parent Task:</td>
-      <td colspan="3"> <input type="text" style="box-sizing:border-box;display:block;width:100%;background-color: lightgrey"   name="parent" ></td>
+      <td colspan="3"> <input type="text" style="box-sizing:border-box;display:block;width:100%;background-color: lightgrey"   name="ParentTaskName" ></td>
     </tr>
     <tr>
       <td>Priority From:</td>
-      <td> <input type="text" style="background-color: lightgrey"></td>
+      <td> <input type="text" style="background-color: lightgrey"  name="Priority" ></td>
       <td>Priority To:</td>
-      <td> <input type="text"  style="background-color: lightgrey"></td>
+      <td> <input type="text"  style="background-color: lightgrey" name="Priority" ></td>
        <td>Start Date:</td>
-      <input class="form-control"  type="date" value="" style="background-color: lightgrey">
+      <input class="form-control"  type="date" value="" style="background-color: lightgrey"  name="StartDate" >
       <td>End Date:</td>
-      <input class="form-control"  type="date" value="" style="background-color: lightgrey">
+      <input class="form-control"  type="date" value="" style="background-color: lightgrey" name="EndDate">
     </tr>
     <tr>
       <td colspan="8"> <button class="btn btn-sm btn-primary">Clear</button></td>

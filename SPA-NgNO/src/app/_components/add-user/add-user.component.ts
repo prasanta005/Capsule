@@ -17,6 +17,14 @@ import { UserService } from './../../_services/user.service';
   styleUrls: ['./add-user.component.css']
 })
 export class AddUserComponent implements OnInit {
+   // User Data
+ key: string = 'name'; //set default
+ reverse: boolean = false;
+
+ sort(key){
+    this.key = key;
+    this.reverse = !this.reverse;
+  }
   updateuserreq: UserData;
   users: UserData[];
   isEdit: boolean;

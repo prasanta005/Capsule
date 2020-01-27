@@ -10,7 +10,9 @@ import { TestBed } from '@angular/core/testing';
 import { ViewTaskComponent } from '../../_components/view-task/view-task.component'
 import { TaskData } from './../../_models/task-data.model';
 import { ProjectData } from './../../_models/project-data.model';
+import { UserData } from './../../_models/user-data.model';
 import { DatePipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-add-project',
@@ -18,6 +20,18 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./add-project.component.css']
 })
 export class AddProjectComponent implements OnInit {
+  
+  // User Data
+ key: string = 'name'; //set default
+ reverse: boolean = false;
+   userData: UserData = {FirstName:'',UserID: null,LastName:'',EmployeeID:'' }
+users: UserData[];
+  //
+  sort(key){
+    this.key = key;
+    this.reverse = !this.reverse;
+  }
+
   updateprojreq: ProjectData;
   projects: ProjectData[];
   isEdit: boolean;
@@ -31,7 +45,7 @@ export class AddProjectComponent implements OnInit {
      Priority: null}
   FormRequestType: string="";
 
-  constructor(private projectService: ProjectService,private userService: UserService, private router: Router) { }
+  constructor(private datePipe: DatePipe,private projectService: ProjectService,private userService: UserService, private router: Router) { }
 
   
   ngOnInit() {
@@ -41,6 +55,16 @@ export class AddProjectComponent implements OnInit {
         this.projects = response;
         console.log( this.projects)
       })
+ this.userService.getUsers()
+      .subscribe(
+        (userresponse: UserData[]) => {
+          this.users = userresponse;
+           console.log("users response in consolee");
+           console.log(this.users);
+        }
+      );
+      
+      
   }
 
   submit(form: FormGroup) {
@@ -119,16 +143,20 @@ export class AddProjectComponent implements OnInit {
   }
 
   edit(id: number) {
+    console.log("id")
+    console.log(id)
      this.FormRequestType="Update";
     console.log("edit id")
      console.log(id)
     this.projectService.getProject(id)
       .subscribe(project => {
+        console.log(project)
         this.projectData.ProjectName = project.ProjectName; 
         this.projectData.Priority = project.Priority;
-          this.projectData.StartDate = project.StartDate; 
-        this.projectData.EndDate = project.EndDate;
-        this.isEdit = true;
+          this.projectData.StartDate = this.datePipe.transform(project.StartDate, "yyyy-MM-dd");
+          this.projectData.EndDate = this.datePipe.transform(project.EndDate, "yyyy-MM-dd");
+          this.projectData.UserID= project.UserID;
+         this.isEdit = true;
         this.projectId = id;
       })
   }

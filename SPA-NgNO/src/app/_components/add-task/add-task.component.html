@@ -15,41 +15,62 @@
           <!-- priority Slider -->
           <div class="form-group">
             <label for="txtlblPriorityName" class="control-label">Priority:{{taskPriority.value}}</label>
-            <input required type="range" class="form-control" id="txtPrioritySlider" name="Priority" min="0" max="50" #taskPriority="ngModel" [(ngModel)]="task.Priority" required >
-            <p>0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;50</p>
-             <div *ngIf="taskPriority.touched && taskPriority.invalid">
-              <span class="error1" *ngIf="taskPriority.errors?.required">Range is required</span>
-            </div>
-           </div>
+            <input required type="range" class="form-control" id="txtPrioritySlider" name="Priority" min="0" max="50" #taskPriority="ngModel"
+              [(ngModel)]="task.Priority" required>
+              <p>0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;50</p>
+              <div *ngIf="taskPriority.touched && taskPriority.invalid">
+                <span class="error1" *ngIf="taskPriority.errors?.required">Range is required</span>
+              </div>
+          </div>
           <!-- Parent Task -->
           <div class="form-group" [class.has-error]="ddltaskId.touched && ddltaskId.invalid">
             <label for="lblParentTsk" class="control-label">Parent Task: </label>
             <!--<select name="ParentID" id="ddlParentTask" class="form-control" #ddltaskId="ngModel" [(ngModel)]="ddltaskId.TaskID" required>-->
-              <select name="ParentID" id="ddlParentTask" class="form-control" #ddltaskId="ngModel" [(ngModel)]="task.ParentID" >
+            <select name="ParentID" id="ddlParentTask" class="form-control" #ddltaskId="ngModel" [(ngModel)]="task.ParentID">
               <option [ngValue]="null">select</option>
                <option *ngFor="let item of tasks" [value]="item.TaskID" [selected]="task.ParentID" >{{item.TaskName}}</option>
               </select>
-              
+
           </div>
 
           <!-- Start Date -->
           <div class="form-group">
             <label for="txtlblStartDateName" class="control-label">Start Date:</label>
-            <input required class="form-control"   type="date" value="" id="example-date-input" #StartDate="ngModel" name="StartDate" [(ngModel)]="task.StartDate" >
-             <div *ngIf="StartDate.touched && StartDate.invalid">
-                <span class="error" *ngIf="StartDate.errors?.required">Please select start date</span>
-              </div>
+            <input required class="form-control" type="date" value="" id="example-date-input" #StartDate="ngModel" name="StartDate" [(ngModel)]="task.StartDate">
+            <div *ngIf="StartDate.touched && StartDate.invalid">
+              <span class="error" *ngIf="StartDate.errors?.required">Please select start date</span>
+            </div>
           </div>
           <!--  -->
 
           <!-- End Date -->
           <div class="form-group">
             <label for="txtlblEndDateName" class="control-label">End Date:</label>
-            <input required class="form-control" type="date"   value="" id="example-date-input" name="EndDate" #EndDate="ngModel" [(ngModel)]="task.EndDate">
-             <div *ngIf="EndDate.touched && EndDate.invalid">
-                <span class="error" *ngIf="EndDate.errors?.required">Please select a End Date</span>
-              </div>
+            <input required class="form-control" type="date" value="" id="example-date-input" name="EndDate" #EndDate="ngModel" [(ngModel)]="task.EndDate">
+            <div *ngIf="EndDate.touched && EndDate.invalid">
+              <span class="error" *ngIf="EndDate.errors?.required">Please select a End Date</span>
+            </div>
           </div>
+
+          <div class="form-group" [class.has-error]="ddltaskId.touched && ddltaskId.invalid">
+            <label for="lblParentTsk" class="control-label">Add User: </label>
+            <!--<select name="ParentID" id="ddlParentTask" class="form-control" #ddltaskId="ngModel" [(ngModel)]="ddltaskId.TaskID" required>-->
+            <select name="UserID" id="ddlParentTask" class="form-control" #ddltaskId="ngModel" [(ngModel)]="userData.UserID">
+              <option [ngValue]="null">select</option>
+               <option *ngFor="let item of users" [value]="item.UserID" [selected]="task.UserID" >{{item.FirstName}}</option>
+              </select>
+          </div>
+
+          <div class="form-group" [class.has-error]="ddltaskId.touched && ddltaskId.invalid">
+            <label for="lblProjectTsk" class="control-label">Add Project: </label>
+            <!--<select name="ParentID" id="ddlParentTask" class="form-control" #ddltaskId="ngModel" [(ngModel)]="ddltaskId.TaskID" required>-->
+            <select name="ProjectID" id="ddlParentTask" class="form-control" #ddltaskId="ngModel" [(ngModel)]="projectData.ProjectID">
+              <option [ngValue]="null">select</option>
+               <option *ngFor="let item of projects" [value]="item.ProjectID" [selected]="task.ProjectID" >{{item.ProjectName}}</option>
+              </select>
+          </div>
+
+          
 
         </div>
         <div class="panel-footer">
@@ -62,4 +83,5 @@
       </div>
     </div>
   </form>
+
 </div>

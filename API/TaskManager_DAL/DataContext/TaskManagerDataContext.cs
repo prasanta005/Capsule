@@ -22,6 +22,8 @@ namespace TaskManager.DAL.DataContext
         }
 
         public System.Data.Entity.DbSet<TaskManager.DAL.Model_Task> DB_Tasks { get; set; }
+        public System.Data.Entity.DbSet<TaskManager.DAL.Model_User> DB_User { get; set; }
 
+        public System.Data.Entity.DbSet<TaskManager.DAL.Model_Project> Model_Project { get; set; } 
     }
 }

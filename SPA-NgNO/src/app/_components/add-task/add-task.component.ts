@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from './../../_services/project.service';
+import { UserService } from './../../_services/user.service';
 import { TaskService } from './../../_services/task.service';
 import { FormGroup } from '@angular/forms';
 import { formatDate } from '@angular/common';
@@ -8,6 +9,8 @@ import { Router } from '@angular/router';
 import { TestBed } from '@angular/core/testing';
 import { ViewTaskComponent } from '../../_components/view-task/view-task.component'
 import { TaskData } from './../../_models/task-data.model';
+import { UserData } from './../../_models/user-data.model';
+import { ProjectData } from './../../_models/project-data.model';
 import { DatePipe } from '@angular/common';
 
 
@@ -18,17 +21,31 @@ import { DatePipe } from '@angular/common';
 })
 
 export class AddTaskComponent implements OnInit {
+userData: UserData = {FirstName:'',UserID: null,LastName:'',EmployeeID:'' }
+users: UserData[];
 
+projectData: ProjectData = {     ProjectID: null,
+    UserID: null,
+    TaskID: null,
+    ProjectName:  '',
+    StartDate: '',
+    EndDate: '',
+     Priority: null}
+projects: ProjectData[];
   // Task Model Sample
   task: TaskData = {
     TaskID: null,
+    UserID: null,
+    ProjectID: null,
     TaskName: '',
     ParentID: null,
+    ParentName: '',
     StartDate: '',
     EndDate: '',
     Priority: null,
     ParentTaskName: '',
-    IsCompleted: false
+    IsCompleted: false,
+
   }
   test: TaskData;
 
@@ -39,9 +56,10 @@ export class AddTaskComponent implements OnInit {
   isEdit: boolean;
   FormRequestType: string;
   param_tsk_id: number;
-  constructor(private projectService: ProjectService,private taskService: TaskService, private router: Router, private datePipe: DatePipe, private route: ActivatedRoute) { }
+  constructor(private userService: UserService,private projectService: ProjectService,private taskService: TaskService, private router: Router, private datePipe: DatePipe, private route: ActivatedRoute) { }
 
   ngOnInit() {
+   
     console.log("Verifying if URL contains params");
     this.param_tsk_id = +this.route.snapshot.params['id'];
 
@@ -79,8 +97,25 @@ export class AddTaskComponent implements OnInit {
       .subscribe(
         (response: TaskData[]) => {
           this.tasks = response;
-          // console.log("project response in consolee");
-          // console.log(this.tasks);
+           console.log("project response in consolee");
+           console.log(this.tasks);
+        }
+      );
+
+      this.userService.getUsers()
+      .subscribe(
+        (userresponse: UserData[]) => {
+          this.users = userresponse;
+           console.log("users response in consolee");
+           console.log(this.users);
+        }
+      );
+
+      this.projectService.getProjects()
+      .subscribe(
+        (projectresponse: ProjectData[]) => {
+          this.projects = projectresponse;
+         
         }
       );
   }

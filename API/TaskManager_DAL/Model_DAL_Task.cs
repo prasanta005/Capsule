@@ -19,6 +19,15 @@ namespace TaskManager.DAL
         public int? ParentID { get; set; }
         [ForeignKey("ParentID")]
         public Model_Task ParentTask { get; set; }
+
+        public int? ProjectID { get; set; }
+        [ForeignKey("ProjectID")]
+        public Model_Project Project { get; set; }
+
+        public int? UserID { get; set; }
+        [ForeignKey("UserID")]
+        public Model_User User { get; set; }
+
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public bool IsCompleted { get; set; }

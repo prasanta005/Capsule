@@ -22,7 +22,7 @@ export class UserService {
   }
   //
 
-  //Add User
+  //Add Users
   addUser(request: any): Observable<UserData> {
     return this.http.post<UserData>(this.apiUrl, request);
   }

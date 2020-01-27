@@ -54,11 +54,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataContext\TaskManagerDataContext.cs" />
-    <Compile Include="Migrations\201912241127181_initial.cs" />
-    <Compile Include="Migrations\201912241127181_initial.Designer.cs">
-      <DependentUpon>201912241127181_initial.cs</DependentUpon>
+    <Compile Include="Migrations\202001270900053_initial.cs" />
+    <Compile Include="Migrations\202001270900053_initial.Designer.cs">
+      <DependentUpon>202001270900053_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Model_DAL_User.cs" />
+    <Compile Include="Model_DAL_Project.cs" />
     <Compile Include="Model_DAL_Task.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -67,8 +69,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201912241127181_initial.resx">
-      <DependentUpon>201912241127181_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202001270900053_initial.resx">
+      <DependentUpon>202001270900053_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
